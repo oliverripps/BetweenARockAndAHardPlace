@@ -1,3 +1,5 @@
+PImage rock;
+
 interface Displayable {
   void display();
 }
@@ -22,16 +24,39 @@ class Rock extends Thing {
   }
 
   void display() {
-    /* ONE PERSON WRITE THIS */
+    image(rock, x, y);
   }
 }
 
 public class LivingRock extends Rock implements Moveable {
+  int state;
+  int maxX;
+  int maxY;
   LivingRock(float x, float y) {
     super(x, y);
+    state=(int)random(3);
   }
   void move() {
-    /* ONE PERSON WRITE THIS */
+    //if(state==0){
+       x+=random(5);
+      y+=random(5);
+    //}
+    //else if(state==1){
+      
+    //}
+    
+    if(this.x>=width-20){
+      this.x=width-20;
+    }
+    if(this.x<=0){
+      this.x=0; 
+    }
+    if(this.y>=height-20){
+      this.y=height-20;
+    }
+    if(this.y<=0){
+      this.y=0; 
+    }
   }
 }
 
@@ -63,11 +88,15 @@ ArrayList<Moveable> thingsToMove;
 
 void setup() {
   size(1000, 800);
+<<<<<<< HEAD
   PImage img;
   img = loadImage("soccerball.jpeg");
   image(img, 0, 0);
   image(img, 0,0, width/2, height/2);
 
+=======
+  rock = loadImage("Rockin.jpeg");
+>>>>>>> 8a191fc8ac3eacd2baecd2e42c20519c4b9b8a71
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
   for (int i = 0; i < 10; i++) {
