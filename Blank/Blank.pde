@@ -1,3 +1,5 @@
+PImage rock;
+
 interface Displayable {
   void display();
 }
@@ -22,7 +24,7 @@ class Rock extends Thing {
   }
 
   void display() {
-    /* ONE PERSON WRITE THIS */
+    image(rock, x, y);
   }
 }
 
@@ -57,7 +59,7 @@ ArrayList<Moveable> thingsToMove;
 
 void setup() {
   size(1000, 800);
-
+  rock = loadImage("Rockin.jpeg");
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
   for (int i = 0; i < 10; i++) {
