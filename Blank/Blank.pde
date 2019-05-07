@@ -22,16 +22,39 @@ class Rock extends Thing {
   }
 
   void display() {
-    /* ONE PERSON WRITE THIS */
+    rect(x,y,20,20);
   }
 }
 
 public class LivingRock extends Rock implements Moveable {
+  int state;
+  int maxX;
+  int maxY;
   LivingRock(float x, float y) {
     super(x, y);
+    state=random(3);
   }
   void move() {
-    /* ONE PERSON WRITE THIS */
+    if(state==0){
+      this.x+=random(5);
+      this.y+=random(5);
+    }
+    else if(state==1){
+      
+    }
+    
+    if(this.x>width){
+      x=width;
+    }
+    if(this.x<0){
+      x=0; 
+    }
+    if(this.y>height){
+      y=height;
+    }
+    if(this.y<0){
+      y=0; 
+    }
   }
 }
 
