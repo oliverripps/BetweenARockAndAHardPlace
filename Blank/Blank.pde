@@ -42,7 +42,13 @@ class Ball extends Thing implements Moveable {
   }
 
   void display() {
-    /* ONE PERSON WRITE THIS */
+    int x = 500;
+    int y = 200;
+    ellipse(x, y, 100, 100);
+    ellipse(x-20, y-10, 30, 30);
+    ellipse(x+20, y-10, 30, 30);
+    
+    
   }
 
   void move() {
@@ -57,6 +63,10 @@ ArrayList<Moveable> thingsToMove;
 
 void setup() {
   size(1000, 800);
+  PImage img;
+  img = loadImage("soccerball.jpeg");
+  image(img, 0, 0);
+  image(img, 0,0, width/2, height/2);
 
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
