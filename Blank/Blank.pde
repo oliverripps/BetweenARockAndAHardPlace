@@ -30,20 +30,29 @@ class Rock extends Thing {
 
 public class LivingRock extends Rock implements Moveable {
   int state;
-  int maxX;
-  int maxY;
+  float iniX;
+  float iniY;
+  float maxX;
+  float maxY;
   LivingRock(float x, float y) {
     super(x, y);
-    state=(int)random(3);
+    state=(int)random(2);
+    iniX=x;
+    iniY=y;
+    maxX=random(width);
+    maxY=random(height);
   }
   void move() {
-    //if(state==0){
-       x+=random(5);
-      y+=random(5);
-    //}
-    //else if(state==1){
+    if(state==0){
+      x+=random(-10,10);
+      y+=random(-10,10);
+    }
+    else if(state==1){
+      x+=(maxX-x)/100;
+      y+=(maxY-y)/100;
       
-    //}
+    }
+    
     
     if(this.x>=width-20){
       this.x=width-20;
@@ -88,15 +97,11 @@ ArrayList<Moveable> thingsToMove;
 
 void setup() {
   size(1000, 800);
-<<<<<<< HEAD
   PImage img;
   img = loadImage("soccerball.jpeg");
   image(img, 0, 0);
   image(img, 0,0, width/2, height/2);
-
-=======
   rock = loadImage("Rockin.jpeg");
->>>>>>> 8a191fc8ac3eacd2baecd2e42c20519c4b9b8a71
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
   for (int i = 0; i < 10; i++) {
