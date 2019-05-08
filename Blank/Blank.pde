@@ -1,5 +1,5 @@
 PImage rock;
-
+PImage img;
 interface Displayable {
   void display();
 }
@@ -70,20 +70,27 @@ public class LivingRock extends Rock implements Moveable {
 }
 
 class Ball extends Thing implements Moveable {
+  float iniX;
+  float iniY;
+  float acc;
+  float count;
+  
   Ball(float x, float y) {
-
     super(x, y);
+    iniX=x;
+    iniY=y;
+    acc=1;
+    count=1;
   }
 
   void display() {
-    PImage img;
-    img = loadImage("soccerball.jpeg");
     image(img, x, y,50,50);
   }
 
   void move() {
-    x+=10;
-    y+=10;
+    count++;
+    acc+=count;
+    y+=acc;
   }
 }
 
@@ -94,13 +101,8 @@ ArrayList<Moveable> thingsToMove;
 
 void setup() {
   size(1000, 800);
-  PImage img;
   img = loadImage("soccerball.jpeg");
-  image(img, 0, 0);
-<<<<<<< HEAD
-=======
-  image(img, 0,0, width/2, height/2);
->>>>>>> 719a033714c26ecb654dcc207429533a5b13e4b8
+
   rock = loadImage("Rockin.jpeg");
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
