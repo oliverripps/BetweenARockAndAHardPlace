@@ -1,8 +1,9 @@
 PImage rock;
+PImage img;
 
 interface Displayable {
   void display();
-}
+}  
 
 interface Moveable {
   void move();
@@ -87,21 +88,35 @@ public class LivingRock extends Rock implements Moveable {
 }
 
 class Ball extends Thing implements Moveable {
+  float iniX;
+  float iniY;
+  float xvector;
+  float yvector;
+  
   Ball(float x, float y) {
 
     super(x, y);
+    iniX=x;
+    iniY=y;
+    xvector=random(10)-5;
+    yvector=random(10)-5;
   }
-
   void display() {
     PImage img;
     img = loadImage("soccerball.jpeg");
     image(img, x, y,50,50);
   }
+  void move(){
+    x+=xvector;
+    y+=yvector;
+    delay(1);
+    if(y>height){
+      yvector*=-1;
+    }
+    if(x>width){
+      xvector*=-1;
+    }
 
-  void move() {
-    x+=10;
-    y+=10;
-  }
 }
 
 /*DO NOT EDIT THE REST OF THIS */
