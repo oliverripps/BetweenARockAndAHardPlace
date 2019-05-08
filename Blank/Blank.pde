@@ -34,13 +34,17 @@ public class LivingRock extends Rock implements Moveable {
   float iniY;
   float maxX;
   float maxY;
+  float angle;
+  float radius;
   LivingRock(float x, float y) {
     super(x, y);
-    state=(int)random(2);
+    state=(int)random(3);
     iniX=x;
     iniY=y;
     maxX=random(width);
     maxY=random(height);
+    angle=random(2*PI);
+    radius=random(5,50);
   }
   void move() {
     if(state==0){
@@ -50,10 +54,22 @@ public class LivingRock extends Rock implements Moveable {
     else if(state==1){
       x+=(maxX-x)/100;
       y+=(maxY-y)/100;
-      
+      if(abs(maxX-x)<2*rock.width&&abs(maxY-y)<2*rock.height){
+        state=3;
+      }
     }
-    
-    
+    else if(state==2){
+      x+=5*cos(angle);
+      y+=5*sin(angle);
+      angle+=(0.1);
+    }
+    else if(state==3){
+      x+=(iniX-x)/100;
+      y+=(iniY-y)/100;
+      if(abs(iniX-x)<2*rock.width&&abs(iniY-y)<2*rock.height){
+        state=1;
+      }
+    }
     if(this.x>=width-rock.width){
       this.x=width-rock.width;
     }
