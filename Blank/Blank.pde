@@ -38,18 +38,19 @@ public class LivingRock extends Rock implements Moveable {
   float radius;
   LivingRock(float x, float y) {
     super(x, y);
-    state=(int)random(3);
+    state=0;
     iniX=x;
     iniY=y;
     maxX=random(width);
     maxY=random(height);
     angle=random(2*PI);
-    radius=random(5,50);
+    radius=random(5,30);
   }
   void move() {
     if(state==0){
-      x+=random(-10,10);
-      y+=random(-10,10);
+      x=iniX+10*sin(3*angle+PI/2);
+      y=iniY+10*cos(2*angle);
+      angle+=(0.1);
     }
     else if(state==1){
       x+=(maxX-x)/100;
@@ -59,8 +60,8 @@ public class LivingRock extends Rock implements Moveable {
       }
     }
     else if(state==2){
-      x+=5*cos(angle);
-      y+=5*sin(angle);
+      x+=radius*cos(angle);
+      y+=radius*sin(angle);
       angle+=(0.1);
     }
     else if(state==3){
@@ -112,11 +113,8 @@ void setup() {
   size(1000, 800);
   PImage img;
   img = loadImage("soccerball.jpeg");
-  image(img, 0, 0);
-<<<<<<< HEAD
-=======
-  image(img, 0,0, width/2, height/2);
->>>>>>> 719a033714c26ecb654dcc207429533a5b13e4b8
+  //image(img, 0, 0);
+  ///image(img, 0,0, width/2, height/2);
   rock = loadImage("Rockin.jpeg");
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
