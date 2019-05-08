@@ -1,8 +1,9 @@
 PImage rock;
 PImage img;
+
 interface Displayable {
   void display();
-}
+}  
 
 interface Moveable {
   void move();
@@ -88,26 +89,38 @@ public class LivingRock extends Rock implements Moveable {
 class Ball extends Thing implements Moveable {
   float iniX;
   float iniY;
-  float acc;
-  float count;
+  float xvector;
+  float yvector;
   
   Ball(float x, float y) {
     super(x, y);
     iniX=x;
     iniY=y;
-    acc=1;
-    count=1;
+    xvector=random(10)-5;
+    yvector=random(10)-5;
   }
 
   void display() {
     image(img, x, y,50,50);
   }
 
-  void move() {
-    count++;
-    acc+=count;
-    y+=acc;
+  void move(){
+    x+=xvector;
+    y+=yvector;
+    delay(1);
+    if(x<0){
+      xvector*=-1;
+    }
+    if(y<0){
+      yvector*=-1;
   }
+    if(y>height){
+      yvector*=-1;
+    }
+    if(x>width){
+      xvector*=-1;
+    }
+    
 }
 
 /*DO NOT EDIT THE REST OF THIS */
