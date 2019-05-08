@@ -155,4 +155,5 @@ void draw() {
   for (Moveable thing : thingsToMove) {
     thing.move();
   }
+  }
 }
