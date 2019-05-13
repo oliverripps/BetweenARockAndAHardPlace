@@ -6,11 +6,12 @@ interface Displayable {
 interface Moveable {
   void move();
 }
-interface Hittable{
+
+interface Collideable{
   boolean isTouching(Thing other);
 }
   
-abstract class Thing implements Displayable {
+abstract class Thing implements Displayable, Collideable {
   float x, y;//Position of the Thing
 
   Thing(float x, float y) {
@@ -18,6 +19,11 @@ abstract class Thing implements Displayable {
     this.y = y;
   }
   abstract void display();
+  
+  boolean isTouching(Thing other) {
+    return other.y <= (this.y + 30) && other.y >= (this.y - 30) && other.x <= (this.x + 30) && other.x >= (this.x - 30);
+  }
+
 }
 
 class Rock extends Thing {
@@ -98,6 +104,7 @@ class Ball extends Thing implements Moveable {
   float iniY;
   float xvector;
   float yvector;
+  boolean tinted;
   
   Ball(float x, float y) {
     super(x, y);
@@ -126,6 +133,9 @@ class SoccerBall extends Ball {
     xvector=random(30)-15;
     yvector=random(30)-15;
     sballPic = bb;
+    
+    tinted = false;
+    
   }
   void display() {
     image(sballPic, x, y,50,50);
@@ -178,6 +188,8 @@ class BasketBall extends Ball {
     maxX=random(width);
     maxY=random(height);
     bballPic = bb;
+    
+    tinted = false;
 
   }
   void display() {
@@ -222,6 +234,14 @@ class BasketBall extends Ball {
         angle+=180;
     }
     }
+    
+    for( Collideable c : thingsToCollide) {
+       if ( c.isTouching(this)){
+          // do something to the ball
+        }
+    }
+    this.tinted = true;
+    tint(0, 153, 204);
 
   }
 }
@@ -231,6 +251,7 @@ class BasketBall extends Ball {
 
 ArrayList<Displayable> thingsToDisplay;
 ArrayList<Moveable> thingsToMove;
+ArrayList<Collideable> thingsToCollide;
 
 void setup() {
   size(1000, 800);
@@ -241,13 +262,17 @@ void setup() {
 
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
+  thingsToCollide = new ArrayList<Collideable>();
+
   for (int i = 0; i < 10; i++) {
     SoccerBall b = new SoccerBall(50+random(width-100), 50+random(height-100), sballPic);
     thingsToDisplay.add(b);
     thingsToMove.add(b);
+    thingsToCollide.add(b);
     BasketBall a = new BasketBall(50+random(width-100), 50+random(height-100), bballPic);
     thingsToDisplay.add(a);
     thingsToMove.add(a);
+    thingsToCollide.add(a);
     Rock r = new Rock(50+random(width-100), 50+random(height-100));
     thingsToDisplay.add(r);
   }
