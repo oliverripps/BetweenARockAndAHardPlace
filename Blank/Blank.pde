@@ -129,30 +129,31 @@ class SoccerBall extends Ball {
   }
   void display() {
     image(sballPic, x, y,50,50);
+    square(x,y,10);
   }
   void move(){
     x+=xvector;
     y+=yvector;
     delay(1);
-   if(y>height-70){
+   if(y>height-50){
       yvector*=-1;
-      yvector+=(random(80)-40);
-      xvector+=(random(10)-5);
+      //yvector+=(random(80)-40);
+      xvector+=(random(30)-15);
    }
-    if(x>width-70){
+    if(x>width-50){
       xvector*=-1;
-      xvector+=(random(80)-40);
-      yvector+=(random(10)-5);
+      //xvector+=(random(80)-40);
+      yvector+=(random(30)-15);
     }
     if(y<0){
       yvector*=-1;
-      yvector+=(random(80)-40);
-      xvector+=(random(10)-5);
+      //yvector+=(random(80)-40);
+      xvector+=(random(30)-15);
     }
     if(x<0){
       xvector*=-1;
-      xvector+=(random(80)-40);
-      yvector+=(random(10)-5);
+      //xvector+=(random(80)-40);
+      yvector+=(random(30)-15);
     }
     
   }
@@ -181,6 +182,7 @@ class BasketBall extends Ball {
   }
   void display() {
     image(bballPic, x, y,50,50);
+    circle(x,y,10.0);
   }
   void move(){
     delay(1);
