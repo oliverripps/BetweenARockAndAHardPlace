@@ -132,23 +132,27 @@ class SoccerBall extends Ball {
     x+=xvector;
     y+=yvector;
     delay(1);
-    if(y>height){
+   if(y>height-70){
       yvector*=-1;
-    }
-    if(x>width-20){
+      yvector+=(random(80)-40);
+      xvector+=(random(10)-5);
+   }
+    if(x>width-70){
       xvector*=-1;
+      xvector+=(random(80)-40);
+      yvector+=(random(10)-5);
     }
     if(y<0){
       yvector*=-1;
+      yvector+=(random(80)-40);
+      xvector+=(random(10)-5);
     }
     if(x<0){
       xvector*=-1;
+      xvector+=(random(80)-40);
+      yvector+=(random(10)-5);
     }
-    /*if(hashit(r)){
-    xvector*=-1;
-    yvector*=-1;
-}*/
-
+    
   }
 }
 
