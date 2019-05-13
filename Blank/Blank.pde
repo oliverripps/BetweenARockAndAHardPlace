@@ -138,22 +138,22 @@ class SoccerBall extends Ball {
    if(y>height-50){
       yvector*=-1;
       //yvector+=(random(80)-40);
-      xvector+=(random(30)-15);
+      xvector+=(random(15)-5);
    }
     if(x>width-50){
       xvector*=-1;
       //xvector+=(random(80)-40);
-      yvector+=(random(30)-15);
+      yvector+=(random(15)-5);
     }
     if(y<0){
       yvector*=-1;
       //yvector+=(random(80)-40);
-      xvector+=(random(30)-15);
+      xvector+=(random(15)-5);
     }
     if(x<0){
       xvector*=-1;
       //xvector+=(random(80)-40);
-      yvector+=(random(30)-15);
+      yvector+=(random(15)-5);
     }
     
   }
