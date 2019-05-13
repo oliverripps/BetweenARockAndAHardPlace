@@ -92,6 +92,7 @@ public class LivingRock extends Rock implements Moveable {
     }
   }
 }
+
 class Ball extends Thing implements Moveable {
   PImage img;
   float iniX;
