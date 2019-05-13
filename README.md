@@ -1,5 +1,13 @@
 # BetweenARockAndAHardPlace
 
+
+Roles
+
+Oliver-Movement of Balls
+Geena-Display of balls
+Jonah-Rocks?
+Kenson-rocks?
+
 Monday 5/6
 -Project Launched, but we were all taking APs :((((
 
