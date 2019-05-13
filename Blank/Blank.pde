@@ -93,13 +93,30 @@ public class LivingRock extends Rock implements Moveable {
   }
 }
 
-class SoccerBall extends Thing implements Moveable {
+class Ball extends Thing implements Moveable {
   PImage img;
   float iniX;
   float iniY;
   float xvector;
   float yvector;
   
+  Ball(float x, float y) {
+    super(x, y);
+    iniX=x;
+    iniY=y;
+    xvector=random(30)-15;
+    yvector=random(30)-15;
+  }
+boolean istouching(Thing rock){
+    return this.x == rock.x && this.y == rock.y;
+  }
+ void move(){
+ }
+ void display(){
+ }
+}
+
+class SoccerBall extends Ball {
   SoccerBall(float x, float y) {
     super(x, y);
     iniX=x;
@@ -133,57 +150,9 @@ class SoccerBall extends Thing implements Moveable {
 }*/
 
   }
-boolean istouching(Thing rock){
-    return this.x == rock.x && this.y == rock.y;
-  }
 }
 
 
-
-class BasketBall extends Thing implements Moveable {
-  PImage img;
-  float iniX;
-  float iniY;
-  float xvector;
-  float yvector;
-  
-  BasketBall(float x, float y) {
-    super(x, y);
-    iniX=x;
-    iniY=y;
-    xvector=random(30)-15;
-    yvector=random(30)-15;
-  }
-  void display() {
-    img = loadImage("basketball.png");
-    image(img, x, y,50,50);
-  }
-  void move(){
-    x+=xvector;
-    y+=yvector;
-    delay(1);
-    if(y>height){
-      yvector*=-1;
-    }
-    if(x>width-20){
-      xvector*=-1;
-    }
-    if(y<0){
-      yvector*=-1;
-    }
-    if(x<0){
-      xvector*=-1;
-    }
-    /*if(hashit(r)){
-    xvector*=-1;
-    yvector*=-1;
-}*/
-
-  }
-boolean istouching(Thing rock){
-    return this.x == rock.x && this.y == rock.y;
-  }
-}
 
 /*DO NOT EDIT THE REST OF THIS */
 
@@ -199,9 +168,9 @@ void setup() {
     SoccerBall b = new SoccerBall(50+random(width-100), 50+random(height-100));
     thingsToDisplay.add(b);
     thingsToMove.add(b);
-    BasketBall a = new BasketBall(50+random(width-100), 50+random(height-100));
-    thingsToDisplay.add(a);
-    thingsToMove.add(a);
+    //BasketBall a = new BasketBall(50+random(width-100), 50+random(height-100));
+    //thingsToDisplay.add(a);
+    //thingsToMove.add(a);
     Rock r = new Rock(50+random(width-100), 50+random(height-100));
     thingsToDisplay.add(r);
   }
