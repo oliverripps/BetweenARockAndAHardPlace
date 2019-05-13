@@ -121,6 +121,8 @@ boolean istouching(Thing rock){
  }
  void display(){
  }
+ 
+ 
 }
 
 class SoccerBall extends Ball {
@@ -150,6 +152,8 @@ class SoccerBall extends Ball {
     square(x + 40,y,10);
     square(x,y + 40,10);
     square(x + 40,y + 40,10);
+    
+    tinted = false;
   }
   void move(){
     x+=xvector;
@@ -177,9 +181,6 @@ class SoccerBall extends Ball {
     }
     
     for( Collideable c : thingsToCollide) {
-       if (this !=c && c.isTouching(this)){
-          this.tinted = true;
-        }
        if (this !=c && c.isTouching(this)){
           this.tinted = true;
         }
