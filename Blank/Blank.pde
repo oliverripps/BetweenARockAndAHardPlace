@@ -133,8 +133,13 @@ class SoccerBall extends Thing implements Moveable {
 }*/
 
   }
+boolean istouching(Thing rock){
+    return this.x == rock.x && this.y == rock.y;
+  }
+}
 
-  
+
+
 class BasketBall extends Thing implements Moveable {
   PImage img;
   float iniX;
@@ -175,7 +180,6 @@ class BasketBall extends Thing implements Moveable {
 }*/
 
   }
-
 boolean istouching(Thing rock){
     return this.x == rock.x && this.y == rock.y;
   }
@@ -193,9 +197,11 @@ void setup() {
   thingsToMove = new ArrayList<Moveable>();
   for (int i = 0; i < 10; i++) {
     SoccerBall b = new SoccerBall(50+random(width-100), 50+random(height-100));
-    BasketBall b = new BasketBall(50+random(width-100), 50+random(height-100));
     thingsToDisplay.add(b);
     thingsToMove.add(b);
+    BasketBall a = new BasketBall(50+random(width-100), 50+random(height-100));
+    thingsToDisplay.add(a);
+    thingsToMove.add(a);
     Rock r = new Rock(50+random(width-100), 50+random(height-100));
     thingsToDisplay.add(r);
   }
