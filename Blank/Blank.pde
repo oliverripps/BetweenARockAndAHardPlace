@@ -140,6 +140,9 @@ class SoccerBall extends Ball {
   void display() {
     image(sballPic, x, y,50,50);
     square(x,y,10);
+    square(x + 40,y,10);
+    square(x,y + 40,10);
+    square(x + 40,y + 40,10);
   }
   void move(){
     x+=xvector;
@@ -193,8 +196,23 @@ class BasketBall extends Ball {
 
   }
   void display() {
+    
+    if (tinted) {
+      
+      tint(250, 0, 0);
+      
+      
+    } else {
+      noTint();
+      
+    }
+    
     image(bballPic, x, y,50,50);
     circle(x,y,10.0);
+    circle(x + 50,y,10.0);
+    circle(x,y + 50,10.0);
+    circle(x + 50,y + 50,10.0);
+    tinted = false;
   }
   void move(){
     delay(1);
@@ -237,12 +255,12 @@ class BasketBall extends Ball {
     
     for( Collideable c : thingsToCollide) {
        if ( c.isTouching(this)){
-          // do something to the ball
+          this.tinted = !tinted;
         }
     }
-    this.tinted = !tinted;
+ 
     if(this.tinted == true){
-      tint(250, 0, 0);
+      //tint(250, 0, 0);
     }
 
   }
