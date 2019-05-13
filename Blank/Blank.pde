@@ -117,16 +117,19 @@ boolean istouching(Thing rock){
 }
 
 class SoccerBall extends Ball {
-  SoccerBall(float x, float y) {
+  
+  PImage ballPic;
+  
+  SoccerBall(float x, float y, PImage bb) {
     super(x, y);
     iniX=x;
     iniY=y;
     xvector=random(30)-15;
     yvector=random(30)-15;
+    ballPic = bb;
   }
   void display() {
-    img = loadImage("soccerball.jpeg");
-    image(img, x, y,50,50);
+    image(ballPic, x, y,50,50);
   }
   void move(){
     x+=xvector;
@@ -158,16 +161,19 @@ class SoccerBall extends Ball {
 
 
 class BasketBall extends Ball {
-  BasketBall(float x, float y) {
+  
+  PImage ballPic;
+  
+  BasketBall(float x, float y, PImage bb) {
     super(x, y);
     iniX=x;
     iniY=y;
     xvector=random(30)-15;
     yvector=random(30)-15;
+    ballPic = bb;
   }
   void display() {
-    img = loadImage("basketball.png");
-    image(img, x, y,50,50);
+    image(ballPic, x, y,50,50);
   }
   void move(){
     x+=xvector;
@@ -201,14 +207,16 @@ ArrayList<Moveable> thingsToMove;
 
 void setup() {
   size(1000, 800);
+  PImage ballPic = loadImage("soccerball.jpeg");
+
 
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
   for (int i = 0; i < 10; i++) {
-    SoccerBall b = new SoccerBall(50+random(width-100), 50+random(height-100));
+    SoccerBall b = new SoccerBall(50+random(width-100), 50+random(height-100), ballPic);
     thingsToDisplay.add(b);
     thingsToMove.add(b);
-    BasketBall a = new BasketBall(50+random(width-100), 50+random(height-100));
+    BasketBall a = new BasketBall(50+random(width-100), 50+random(height-100), ballPic);
     thingsToDisplay.add(a);
     thingsToMove.add(a);
     Rock r = new Rock(50+random(width-100), 50+random(height-100));
