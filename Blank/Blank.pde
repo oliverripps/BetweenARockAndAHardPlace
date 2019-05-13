@@ -34,6 +34,7 @@ class Rock extends Thing {
 
   void display() {
     rock = loadImage("Rockin.jpeg");
+    noTint();
     image(rock, x, y);
   }
   boolean hashit(Thing o) {
@@ -138,6 +139,12 @@ class SoccerBall extends Ball {
     
   }
   void display() {
+      if (tinted) { 
+      tint(250, 0, 0);   
+    } else {
+      noTint();
+    }
+
     image(sballPic, x, y,50,50);
     square(x,y,10);
     square(x + 40,y,10);
@@ -167,6 +174,15 @@ class SoccerBall extends Ball {
       xvector*=-1;
       //xvector+=(random(80)-40);
       yvector+=(random(15)-5);
+    }
+    
+    for( Collideable c : thingsToCollide) {
+       if (this !=c && c.isTouching(this)){
+          this.tinted = true;
+        }
+       if (this !=c && c.isTouching(this)){
+          this.tinted = true;
+        }
     }
     
   }
@@ -201,7 +217,6 @@ class BasketBall extends Ball {
       
       tint(250, 0, 0);
       
-      
     } else {
       noTint();
       
@@ -212,6 +227,7 @@ class BasketBall extends Ball {
     circle(x + 50,y,10.0);
     circle(x,y + 50,10.0);
     circle(x + 50,y + 50,10.0);
+    
     tinted = false;
   }
   void move(){
@@ -254,14 +270,11 @@ class BasketBall extends Ball {
     }
     
     for( Collideable c : thingsToCollide) {
-       if ( c.isTouching(this)){
-          this.tinted = !tinted;
+       if (this !=c && c.isTouching(this)){
+          this.tinted = true;
         }
     }
  
-    if(this.tinted == true){
-      //tint(250, 0, 0);
-    }
 
   }
 }
