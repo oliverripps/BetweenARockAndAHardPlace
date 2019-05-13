@@ -10,7 +10,6 @@ interface Hittable{
   boolean hashit(Thing t);
 }
   
-  
 abstract class Thing implements Displayable {
   float x, y;//Position of the Thing
 
@@ -28,6 +27,7 @@ class Rock extends Thing {
   }
 
   void display() {
+    rock = loadImage("Rockin.jpeg");
     image(rock, x, y);
   }
   boolean hashit(Thing o) {
@@ -108,7 +108,7 @@ class Ball extends Thing implements Moveable {
     yvector=random(10)-5;
   }
   void display() {
-    //img = loadImage("soccerball.jpeg");
+    img = loadImage("soccerball.jpeg");
     image(img, x, y,50,50);
   }
   void move(){
@@ -135,10 +135,7 @@ ArrayList<Moveable> thingsToMove;
 
 void setup() {
   size(1000, 800);
-  //PImage img;
-  //img = loadImage("soccerball.jpeg");
-  //image(img, 0, 0);
-  ///image(img, 0,0, width/2, height/2);
+
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
   for (int i = 0; i < 10; i++) {
@@ -163,4 +160,4 @@ void draw() {
   for (Moveable thing : thingsToMove) {
     thing.move();
   }
-  }
+}
