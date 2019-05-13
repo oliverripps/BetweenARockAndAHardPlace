@@ -181,7 +181,7 @@ class SoccerBall extends Ball {
     }
     
     for( Collideable c : thingsToCollide) {
-       if (this !=c && c.isTouching(this)){
+       if ((c instanceof Rock) && c.isTouching(this)){
           this.tinted = true;
         }
     }
@@ -271,7 +271,7 @@ class BasketBall extends Ball {
     }
     
     for( Collideable c : thingsToCollide) {
-       if (this !=c && c.isTouching(this)){
+       if ((c instanceof Rock) && c.isTouching(this)){
           this.tinted = true;
         }
     }
@@ -309,6 +309,7 @@ void setup() {
     thingsToCollide.add(a);
     Rock r = new Rock(50+random(width-100), 50+random(height-100));
     thingsToDisplay.add(r);
+    thingsToCollide.add(r);
   }
   for (int i = 0; i < 3; i++) {
     LivingRock m = new LivingRock(50+random(width-100), 50+random(height-100));
