@@ -21,7 +21,7 @@ abstract class Thing implements Displayable, Collideable {
   abstract void display();
   
   boolean isTouching(Thing other) {
-    return other.y <= (this.y + 30) && other.y >= (this.y - 30) && other.x <= (this.x + 30) && other.x >= (this.x - 30);
+    return other.y <= (this.y + 50) && other.y >= (this.y - 50) && other.x <= (this.x + 50) && other.x >= (this.x - 50);
   }
 
 }
@@ -115,7 +115,7 @@ class Ball extends Thing implements Moveable {
     yvector=random(30)-15;
   }
 boolean istouching(Thing rock){
-    return this.x == rock.x && this.y == rock.y;
+    return this.x == rock.x && this.y == rock.y; //this is too narrow
   }
  void move(){
  }
