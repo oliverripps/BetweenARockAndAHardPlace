@@ -240,8 +240,10 @@ class BasketBall extends Ball {
           // do something to the ball
         }
     }
-    this.tinted = true;
-    tint(0, 153, 204);
+    this.tinted = !tinted;
+    if(this.tinted == true){
+      tint(250, 0, 0);
+    }
 
   }
 }
