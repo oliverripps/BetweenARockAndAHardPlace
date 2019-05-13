@@ -93,14 +93,14 @@ public class LivingRock extends Rock implements Moveable {
   }
 }
 
-class Ball extends Thing implements Moveable {
+class SoccerBall extends Thing implements Moveable {
   PImage img;
   float iniX;
   float iniY;
   float xvector;
   float yvector;
   
-  Ball(float x, float y) {
+  SoccerBall(float x, float y) {
     super(x, y);
     iniX=x;
     iniY=y;
@@ -133,6 +133,49 @@ class Ball extends Thing implements Moveable {
 }*/
 
   }
+
+  
+class BasketBall extends Thing implements Moveable {
+  PImage img;
+  float iniX;
+  float iniY;
+  float xvector;
+  float yvector;
+  
+  BasketBall(float x, float y) {
+    super(x, y);
+    iniX=x;
+    iniY=y;
+    xvector=random(30)-15;
+    yvector=random(30)-15;
+  }
+  void display() {
+    img = loadImage("basketball.png");
+    image(img, x, y,50,50);
+  }
+  void move(){
+    x+=xvector;
+    y+=yvector;
+    delay(1);
+    if(y>height){
+      yvector*=-1;
+    }
+    if(x>width-20){
+      xvector*=-1;
+    }
+    if(y<0){
+      yvector*=-1;
+    }
+    if(x<0){
+      xvector*=-1;
+    }
+    /*if(hashit(r)){
+    xvector*=-1;
+    yvector*=-1;
+}*/
+
+  }
+
 boolean istouching(Thing rock){
     return this.x == rock.x && this.y == rock.y;
   }
@@ -149,7 +192,8 @@ void setup() {
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
   for (int i = 0; i < 10; i++) {
-    Ball b = new Ball(50+random(width-100), 50+random(height-100));
+    SoccerBall b = new SoccerBall(50+random(width-100), 50+random(height-100));
+    BasketBall b = new BasketBall(50+random(width-100), 50+random(height-100));
     thingsToDisplay.add(b);
     thingsToMove.add(b);
     Rock r = new Rock(50+random(width-100), 50+random(height-100));
