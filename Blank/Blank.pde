@@ -7,7 +7,7 @@ interface Moveable {
   void move();
 }
 interface Hittable{
-  boolean isTouching(Thing other)
+  boolean isTouching(Thing other);
 }
   
 abstract class Thing implements Displayable {
