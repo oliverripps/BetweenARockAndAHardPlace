@@ -7,7 +7,7 @@ interface Moveable {
   void move();
 }
 interface Hittable{
-  boolean hashit(Thing t);
+  boolean isTouching(Thing other)
 }
   
 abstract class Thing implements Displayable {
@@ -104,8 +104,8 @@ class Ball extends Thing implements Moveable {
     super(x, y);
     iniX=x;
     iniY=y;
-    xvector=random(10)-5;
-    yvector=random(10)-5;
+    xvector=random(30)-15;
+    yvector=random(30)-15;
   }
   void display() {
     img = loadImage("soccerball.jpeg");
@@ -118,12 +118,22 @@ class Ball extends Thing implements Moveable {
     if(y>height){
       yvector*=-1;
     }
-    if(x>width){
+    if(x>width-20){
       xvector*=-1;
     }
+    if(y<0){
+      yvector*=-1;
+    }
+    if(x<0){
+      xvector*=-1;
+    }
+    /*if(hashit(r)){
+    xvector*=-1;
+    yvector*=-1;
+}*/
 
-}
-boolean hashit(Thing rock){
+  }
+boolean istouching(Thing rock){
     return this.x == rock.x && this.y == rock.y;
   }
 }
