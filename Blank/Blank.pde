@@ -132,25 +132,25 @@ class SoccerBall extends Ball {
     x+=xvector;
     y+=yvector;
     delay(1);
-   if(y>height-70){
+   if(y>height-50){
       yvector*=-1;
-      yvector+=(random(80)-40);
-      xvector+=(random(10)-5);
+      //yvector+=(random(40));
+      xvector+=(random(5));
    }
-    if(x>width-70){
+    if(x>width-50){
       xvector*=-1;
-      xvector+=(random(80)-40);
-      yvector+=(random(10)-5);
+      //xvector+=(random(40));
+      yvector+=(random(5));
     }
     if(y<0){
       yvector*=-1;
-      yvector+=(random(80)-40);
-      xvector+=(random(10)-5);
+      //yvector+=(random(40));
+      xvector+=(random(5));
     }
     if(x<0){
       xvector*=-1;
-      xvector+=(random(80)-40);
-      yvector+=(random(10)-5);
+      //xvector+=(random(40));
+      yvector+=(random(5));
     }
     
   }
@@ -158,37 +158,64 @@ class SoccerBall extends Ball {
 
 
 class BasketBall extends Ball {
+  float angle;
+  float radius;
+  float iniX;
+  float iniY;
+  float maxX;
+  float maxY;
+  
   BasketBall(float x, float y) {
     super(x, y);
     iniX=x;
     iniY=y;
-    xvector=random(30)-15;
-    yvector=random(30)-15;
+    angle=random(2*PI);
+    radius=random(5,30);
+    maxX=random(width);
+    maxY=random(height);
   }
   void display() {
     img = loadImage("basketball.png");
     image(img, x, y,50,50);
   }
   void move(){
-    x+=xvector;
-    y+=yvector;
     delay(1);
+    
+    x=iniX+100*sin(1*angle+PI/3);
+    y=iniY+100*sin(2*angle);
+    angle+=(0.2);
     if(y>height){
-      yvector*=-1;
+      if(angle>180){
+        angle-=180;
+      }
+      else{
+        angle+=180;
+    }
     }
     if(x>width-20){
-      xvector*=-1;
+      if(angle>180){
+        angle-=180;
+      }
+      else{
+        angle+=180;
+    }
     }
     if(y<0){
-      yvector*=-1;
+      if(angle>180){
+        angle-=180;
+      }
+      else{
+        angle+=180;
+    }
     }
     if(x<0){
-      xvector*=-1;
+      if(angle>180){
+        angle-=180;
+      }
+      else{
+        angle+=180;
     }
-    /*if(hashit(r)){
-    xvector*=-1;
-    yvector*=-1;
-}*/
+    }
 
   }
 }
